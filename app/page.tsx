@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1>Next.js + PWA = AWESOME!</h1>
+      <h1>Next.js + In App Router PWA = AWESOME!</h1>
       <Link href="/about">About page</Link>
     </>
   );
