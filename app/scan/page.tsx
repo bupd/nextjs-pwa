@@ -3,20 +3,25 @@ import React, { useEffect, useState } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 
 function Scan() {
-  const [scanResult, setScanResult] = useState(null);
+  const [scanResult, setScanResult] = useState<string | null>(null);
   const [manualSerialNumber, setManualSerialNumber] = useState("");
 
   useEffect(() => {
-    const scanner = new Html5QrcodeScanner("reader", {
-      // Ensure that `qrbox` is not provided or set to null for live camera scanning
-      fps: 5,
-    });
+    const scanner = new Html5QrcodeScanner(
+      "reader",
+      {
+        // Ensure that `qrbox` is not provided or set to null for live camera scanning
+        fps: 5,
+        qrbox: 250,
+      },
+      true,
+    );
 
     let isScanning = true;
 
     scanner.render(success, error);
 
-    function success(result) {
+    function success(result: any) {
       if (isScanning) {
         scanner.clear();
         setScanResult(result);
@@ -24,16 +29,16 @@ function Scan() {
       }
     }
 
-    function error(err) {
+    function error(err: any) {
       console.warn(err);
     }
 
     return () => {
-      scanner.stop; // Ensure scanner is stopped when component unmounts
+      scanner.clear(); // Ensure scanner is stopped when component unmounts
     };
   }, []);
 
-  function handleManualSerialNumberChange(event) {
+  function handleManualSerialNumberChange(event :any) {
     setManualSerialNumber(event.target.value);
   }
 
