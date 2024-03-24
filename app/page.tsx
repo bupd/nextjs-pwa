@@ -10,6 +10,7 @@ export default function Page() {
     <>
       <h1>Next.js + In App Router PWA = AWESOME!</h1>
       <Link href="/about">About page</Link>
+      <Link href="/scan">Scan page</Link>
     </>
   );
 }
